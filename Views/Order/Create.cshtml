@@ -1,0 +1,62 @@
+@model SEIntern.Models.Order
+@{  
+    ViewData["Title"] = "Create";  
+}
+<div class="row">  
+  <div class="col-lg-4"></div>
+    <div class="col-lg-4 col-md-4">  
+        <h2>Create</h2>  
+        <h4>Product</h4>
+        <hr />
+        <form asp-action="Create">  
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">  
+                <label class="control-label">Sales Order</label>  
+                <input asp-for="SalesOrder" class="form-control" />
+                <span asp-validation-for="SalesOrder" class="text-danger"></span>  
+            </div>  
+            <div class="form-group">  
+                <label class="control-label">Product ID</label>   
+                <input asp-for="ProductID" class="form-control" />
+                <span asp-validation-for="ProductID" class="text-danger"></span>  
+            </div>
+            <div class="form-group">  
+                <label class="control-label">Sales Order Item</label>   
+                <input asp-for="SalesOrderItem" class="form-control" />  
+                <span asp-validation-for="SalesOrderItem" class="text-danger"></span>
+            </div>
+            <div class="form-group">  
+                <label class="control-label">Work Order</label> 
+                <input asp-for="WorkOrder" class="form-control" />  
+                <span asp-validation-for="WorkOrder" class="text-danger"></span>
+            </div>
+            <div class="form-group">  
+                <label class="control-label">Product Description</label>  
+                <input asp-for="ProductDescription" class="form-control" />  
+                <span asp-validation-for="ProductDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">  
+                <label class="control-label">Order Quantity</label>   
+                <input asp-for="OrderQuantity" class="form-control" />  
+                <span asp-validation-for="OrderQuantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">  
+                <label class="control-label">Order Status</label>  
+                <input asp-for="OrderStatus" class="form-control" />  
+                <span asp-validation-for="OrderStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">  
+                @* <button type="submit" value="Create" class="btn btn-primary" style="margin-top:10px;">Create</button> *@
+                <input type="submit" value="Create" class="btn btn-primary" style="margin-top:10px;"/>
+            </div>  
+        </form>  
+    </div>  
+</div>  
+  
+<div>  
+    <a asp-action="Index">Back to List</a>  
+</div>  
+  
+@section Scripts {  
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}  
+}  

@@ -1,0 +1,94 @@
+@model IEnumerable<SEIntern.Models.Order>
+@{
+    ViewData["Title"] = "Index";
+}
+<h2>Data Table</h2>
+<div class="row">
+    <div class="col-lg-8">  
+        <a asp-action="Create" class="btn btn-success">Create New</a>  
+    </div>
+    <div class="col-lg-4">
+        <input type="text" placeholder="Search here" id="txtSearch" class="form-control" style="margin-bottom: 10px" />
+    </div>
+</div>
+<table class="table table-striped">  
+    <thead>  
+        <tr style="font-size:smaller; text-align:center; background-color:rgb(0, 162, 0); color: rgb(237, 237, 237)">  
+            <th>  
+                Sales Order  
+            </th>  
+            <th>  
+                Sales Order Item 
+            </th>  
+            <th>  
+                Work Order  
+            </th>  
+            <th>  
+                Product ID 
+            </th>  
+            <th>  
+                Product Description  
+            </th>  
+            <th>  
+                Order Quantity  
+            </th>
+            <th>  
+                Order Status
+            </th>
+            <th>
+                Timestamp
+            </th>
+            <th>Edit</th>  
+            <th>Delete</th>
+        </tr>  
+    </thead>  
+    <tbody>  
+@if (Model.Any()){
+@foreach (var item in Model) {  
+        <tr style="text-align:center">  
+            <td>  
+                @item.SalesOrder
+            </td>  
+            <td>  
+                @item.SalesOrderItem
+            </td>  
+            <td>  
+                @item.WorkOrder
+            </td>  
+            <td>  
+                @item.ProductID  
+            </td>  
+            <td>  
+                @item.ProductDescription
+            </td>  
+            <td>  
+                @item.OrderStatus
+            </td>  
+            <td>  
+                @item.OrderQuantity
+            </td>
+            <td>
+                @item.Timestamp
+            <td>  
+                @Html.ActionLink("Edit", "Edit", new { WorkOrder=item.WorkOrder  }, new { @class = "btn btn-primary btn-sm" })
+            </td>
+            <td>   
+                @using (Html.BeginForm("DeleteInstant", "Order", FormMethod.Post))
+                {
+                    @Html.Hidden("WorkOrder", item.WorkOrder)
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                }  
+            </td>
+        </tr>  
+        }
+        }
+        else{
+            <tr>
+                <td colspan="10" style="text-align:center">No data found</td>
+            </tr>
+        }
+    </tbody>  
+</table>
+@section Scripts{
+    <script src="~/js/searchEngine.js"></script>
+}
